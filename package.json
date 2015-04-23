@@ -1,0 +1,14 @@
+{
+  "name": "Campus-Frontend",
+  "version": "1.0.0",
+  "description": "KPI Campus frontend",
+  "main": "index.js",
+  "scripts": {
+      "server": "node index.js",
+      "test": "mocha tests"
+   },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^2.2.4"
+  }
+}
