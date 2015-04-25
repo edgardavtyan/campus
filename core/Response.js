@@ -24,14 +24,7 @@ var Response = function(res) {
 
    self.render = function(view) {
       var viewPath = path.resolve('views/', view + '.html');
-      fs.readFile(viewPath, function(err, fileContent) {
-         if (err) {
-            self.send(404, 'text/plain', 'File not found');
-            return;
-         }
-
-         self.send(200, 'text/html', fileContent);
-      });
+      self.sendFile(viewPath);
    };
 };
 
