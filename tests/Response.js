@@ -1,5 +1,6 @@
 var http = require('http');
 var expect = require('expect.js');
+var mockfs = require('mock-fs');
 var Response = require('../core/Response');
 
 var requestOptions = {};
@@ -44,6 +45,44 @@ describe('Response', function() {
          makeRequest(function(res, data) {
             expect(res.statusCode).to.be(200);
             expect(data).to.be('test text');
+            done();
+         });
+      });
+   });
+
+   describe('#render', function() {
+      before(function() {
+         mockfs({
+            'views': {
+               'template.html': '<p>Test HTML</p>'
+            }
+         });
+      });
+
+      after(function() {
+         mockfs.restore();
+      });
+
+      it('should send rendered contents of the template file', function(done) {
+         var html = '<p>Test HTML</p>';
+
+         startServer(function(response) {
+            response.render('template');
+         });
+
+         makeRequest(function(response, data) {
+            expect(data).to.be(html);
+            done();
+         });
+      });
+
+      it('should send 404 error if view does not exists', function(done) {
+         startServer(function(response) {
+            response.render('not-exists');
+         });
+
+         makeRequest(function(response) {
+            expect(response.statusCode).to.be(404);
             done();
          });
       });
