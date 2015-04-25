@@ -8,8 +8,8 @@ var requestOptions = {};
 var startServer = function(callback) {
    http.createServer(function(req, res) {
       var response = new Response(res);
-      callback(response);
       this.close();
+      callback(response);
    }).listen(1000);
 };
 
@@ -45,6 +45,31 @@ describe('Response', function() {
          makeRequest(function(res, data) {
             expect(res.statusCode).to.be(200);
             expect(data).to.be('test text');
+            done();
+         });
+      });
+   });
+
+   describe('#sendFile', function() {
+      before(function() {
+         mockfs({
+            'TestDir': {
+               'TestFile.json': '{ key: value }'
+            }
+         });
+      });
+
+      after(function() {
+         mockfs.restore();
+      });
+
+      it('should send existing file', function(done) {
+         startServer(function(response) {
+            response.sendFile('TestDir/TestFile.json');
+         });
+
+         makeRequest(function(response, data) {
+            expect(data).to.be('{ key: value }');
             done();
          });
       });
