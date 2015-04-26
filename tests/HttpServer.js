@@ -3,7 +3,6 @@ var http = require('http');
 var HttpServer = require('../core/HttpServer');
 
 var requestOptions = {};
-
 var makeRequest = function(onBodyRead) {
    http.request(requestOptions, function(res) {
       var body = '';
@@ -17,8 +16,22 @@ var makeRequest = function(onBodyRead) {
    }).end();
 };
 
+var TestController = function() {
+   var self = this;
+
+   self.index = function() {
+      self.response.send(200, 'text/plain', 'Test Data');
+   };
+
+   self.testMethod = function() {
+      self.response.send(200, 'text/plain', 'Test Data');
+   };
+};
+
+var httpServer = new HttpServer();
+httpServer.controllers['Test'] = new TestController();
+
 describe('HttpServer', function() {
-   var httpServer = new HttpServer();
    httpServer.start();
 
    beforeEach(function() {
@@ -31,16 +44,6 @@ describe('HttpServer', function() {
    });
 
    it('should call index method of controller on request', function(done) {
-      var TestController = function() {
-         var self = this;
-
-         self.index = function() {
-            self.response.send(200, 'text/plain', 'Test Data');
-         };
-      };
-
-      httpServer.controllers['Test'] = new TestController();
-
       requestOptions.path = '/Test/';
       makeRequest(function(response, body) {
          expect(response.statusCode).to.be(200);
@@ -50,16 +53,6 @@ describe('HttpServer', function() {
    });
 
    it('should call non-index method of controller on request', function(done) {
-      var TestController = function() {
-         var self = this;
-
-         self.testMethod = function() {
-            self.response.send(200, 'text/plain', 'Test Data');
-         };
-      };
-
-      httpServer.controllers['Test'] = new TestController();
-
       requestOptions.path = '/Test/testMethod/';
       makeRequest(function(response, body) {
          expect(response.statusCode).to.be(200);
@@ -69,8 +62,7 @@ describe('HttpServer', function() {
    });
 
    it('should send 404 error given non-existing controller', function(done) {
-      httpServer.controllers = {};
-      requestOptions.path = '/Test/testMethod/';
+      requestOptions.path = '/not-exists/';
       makeRequest(function(response) {
          expect(response.statusCode).to.be(404);
          done();
@@ -78,9 +70,7 @@ describe('HttpServer', function() {
    });
 
    it('should send 404 error given non-existing method', function(done) {
-      var TestController = function() {};
-      httpServer.controllers['Test'] = new TestController();
-      requestOptions.path = '/Test/testMethod/';
+      requestOptions.path = '/Test/not-exists/';
       makeRequest(function(response) {
          expect(response.statusCode).to.be(404);
          done();
