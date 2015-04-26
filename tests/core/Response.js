@@ -1,7 +1,7 @@
 var http = require('http');
 var expect = require('expect.js');
 var mockfs = require('mock-fs');
-var Response = require('../core/Response');
+var Response = require('../../core/Response');
 
 var requestOptions = {};
 

@@ -1,7 +1,7 @@
 var expect = require('expect.js');
 var http = require('http');
 var mockfs = require('mock-fs');
-var HttpServer = require('../core/HttpServer');
+var HttpServer = require('../../core/HttpServer');
 
 var requestOptions = {};
 var makeRequest = function(onBodyRead) {
