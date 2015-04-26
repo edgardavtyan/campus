@@ -18,15 +18,14 @@ var HttpServer = function() {
             return;
          }
 
-         controller.response = response;
-         controller.request = request;
-
          var controllerMethod = controller[request.controllerMethod()];
          if (!controllerMethod) {
             response.send(404, 'text/plain', 'Method not found');
             return;
          }
 
+         controller.response = response;
+         controller.request = request;
          controllerMethod();
       }).listen(8888);
    };
