@@ -1,6 +1,7 @@
 var fs = require('fs');
 var mime = require('mime');
 var path = require('path');
+var nunjucks = require('nunjucks');
 
 var Response = function(res) {
    var self = this;
@@ -13,19 +14,27 @@ var Response = function(res) {
    };
 
    self.sendFile = function(filePath) {
-      fs.readFile(filePath, function(err, fileContent) {
+      var fixedFilePath = path.join(__dirname, '../', filePath);
+      fs.readFile(fixedFilePath, function(err, fileContent) {
          if (err) {
             self.send(404, 'text/plain', 'File not found');
             return;
          }
 
-         self.send(200, mime.lookup(filePath), fileContent.toString('utf-8'));
+         console.log(fixedFilePath);
+         self.send(200, mime.lookup(fixedFilePath), fileContent);
       });
    };
 
    self.render = function(view) {
-      var viewPath = path.resolve('views/', view + '.html');
-      self.sendFile(viewPath);
+      nunjucks.render(view + '.html', {}, function(err, html) {
+         if (err) {
+            self.send(404, 'text/plain', 'File not found');
+            return;
+         }
+
+         self.send(200, 'text/html', html);
+      });
    };
 };
 

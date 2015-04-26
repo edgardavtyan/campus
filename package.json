@@ -19,6 +19,7 @@
     "mock-fs": "^2.5.0"
   },
   "dependencies": {
-    "mime": "^1.3.4"
+    "mime": "^1.3.4",
+    "nunjucks": "^1.3.3"
   }
 }
