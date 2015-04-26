@@ -21,7 +21,6 @@ var Response = function(res) {
             return;
          }
 
-         console.log(fixedFilePath);
          self.send(200, mime.lookup(fixedFilePath), fileContent);
       });
    };
