@@ -1,33 +1,23 @@
 var http = require('http');
 var expect = require('expect.js');
 var mockfs = require('mock-fs');
+var util = require('../util');
 var Response = require('../../core/Response');
 
-var requestOptions = {};
-
-var startServer = function(callback) {
-   http.createServer(function(req, res) {
-      var response = new Response();
-      response.load(res);
-      this.close();
-      callback(response);
-   }).listen(1000);
-};
-
-var makeRequest = function(onBodyRead) {
-   http.request(requestOptions, function(res) {
-      var body = '';
-      res.on('data', function(chunk) {
-         body += chunk;
-      });
-
-      res.on('end', function() {
-         onBodyRead(res, body);
-      });
-   }).end();
-};
 
 describe('Response', function() {
+   var requestOptions = {};
+
+   var startServer = function(callback) {
+      http.createServer(function(req, res) {
+         var response = new Response();
+         response.load(res);
+         this.close();
+         callback(response);
+      }).listen(1000);
+   };
+
+
    beforeEach(function() {
       requestOptions = {
          host: 'localhost',
@@ -37,19 +27,21 @@ describe('Response', function() {
       };
    });
 
+
    describe('#send', function() {
       it('should send response', function(done) {
          startServer(function(response) {
             response.send(200, 'text/plain', 'test text');
          });
 
-         makeRequest(function(res, data) {
+         util.makeRequest(requestOptions, function(res, data) {
             expect(res.statusCode).to.be(200);
             expect(data).to.be('test text');
             done();
          });
       });
    });
+
 
    describe('#sendFile', function() {
       before(function() {
@@ -69,7 +61,7 @@ describe('Response', function() {
             response.sendFile('TestDir/TestFile.json');
          });
 
-         makeRequest(function(response, data) {
+         util.makeRequest(requestOptions, function(response, data) {
             expect(data).to.be('{ key: value }');
             done();
          });
@@ -80,12 +72,13 @@ describe('Response', function() {
             response.sendFile('TestDir/not-exists.json');
          });
 
-         makeRequest(function(response) {
+         util.makeRequest(requestOptions, function(response) {
             expect(response.statusCode).to.be(404);
             done();
          });
       });
    });
+
 
    describe('#render', function() {
       it('should send rendered contents of the template file', function(done) {
@@ -99,7 +92,7 @@ describe('Response', function() {
             response.render('template');
          });
 
-         makeRequest(function(response, data) {
+         util.makeRequest(requestOptions, function(response, data) {
             expect(data).to.be(testHtmlString);
             done();
          });

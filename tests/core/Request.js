@@ -2,20 +2,21 @@ var expect = require('expect.js');
 var http = require('http');
 var Request = require('../../core/Request');
 
-var requestOptions = {};
-
-var server = function(done, callback) {
-   http.createServer(function(req, res) {
-      res.end();
-      var request = new Request();
-      request.load(req);
-      this.close();
-      callback(request, res);
-      done();
-   }).listen(1000);
-};
-
 describe('Request', function() {
+   var requestOptions = {};
+
+   var startServer = function(done, callback) {
+      http.createServer(function(req, res) {
+         res.end();
+         var request = new Request();
+         request.load(req);
+         this.close();
+         callback(request, res);
+         done();
+      }).listen(1000);
+   };
+
+
    beforeEach(function() {
       requestOptions = {
          host: 'localhost',
@@ -25,9 +26,10 @@ describe('Request', function() {
       };
    });
 
+
    describe('#pathname', function() {
       it('should return base request pathname', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.pathname()).to.be('/controller/method/param1/param2');
          });
 
@@ -35,9 +37,10 @@ describe('Request', function() {
       });
    });
 
+
    describe('#url', function() {
       it('should return base request url', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.url()).to.be('/controller/method/param1/param2?queryParam=value#hash');
          });
 
@@ -45,9 +48,10 @@ describe('Request', function() {
       });
    });
 
+
    describe('#isFile', function() {
       it('should return true if file was requested', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.isFile()).to.be(true);
          });
 
@@ -56,7 +60,7 @@ describe('Request', function() {
       });
 
       it('should return false if controller or method was requested', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.isFile()).to.be(false);
          });
 
@@ -65,9 +69,10 @@ describe('Request', function() {
       });
    });
 
+
    describe('#controllerName', function() {
       it('should return first pathname item if it exists', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.controllerName()).to.be('controller');
          });
 
@@ -75,7 +80,7 @@ describe('Request', function() {
       });
 
       it('should return default name if pathanme has no firts item', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.controllerName()).to.be('home');
          });
 
@@ -84,9 +89,10 @@ describe('Request', function() {
       });
    });
 
+
    describe('#controllerMethod', function() {
       it('should form and return controller method if it exists in pathname', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.controllerMethod()).to.be('GET_method');
          });
 
@@ -94,7 +100,7 @@ describe('Request', function() {
       });
 
       it('should return default method if pathname has no second item', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.controllerMethod()).to.be('GET_index');
          });
 
@@ -103,7 +109,7 @@ describe('Request', function() {
       });
 
       it('should return default method if pathname second item is "/"', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.controllerMethod()).to.be('GET_index');
          });
 
@@ -112,9 +118,10 @@ describe('Request', function() {
       });
    });
 
+
    describe('#controllerParams', function() {
       it('should return third and rest pathname items if they exist in pathname', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.controllerParams()).to.be.eql(['param1', 'param2']);
          });
 
@@ -122,7 +129,7 @@ describe('Request', function() {
       });
 
       it('should return empty array if pathname has no third and rest items', function(done) {
-         server(done, function(request) {
+         startServer(done, function(request) {
             expect(request.controllerParams()).to.be.eql([]);
          });
 
