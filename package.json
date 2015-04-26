@@ -8,11 +8,6 @@
     "test": "mocha ./tests/**/*.js",
     "coverage": "istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec ./tests/**/*.js"
   },
-  "config": {
-    "blanket": {
-      "pattern": "core/Response.js"
-    }
-  },
   "devDependencies": {
     "expect.js": "^0.3.1",
     "istanbul": "^0.3.13",
