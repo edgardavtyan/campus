@@ -1,11 +1,15 @@
 var fs = require('fs');
 var mime = require('mime');
 var path = require('path');
-var nunjucks = require('nunjucks');
+var NunjucksCompiler = require('./NunjucksCompiler');
 
 var Response = function(res) {
    var self = this;
    var baseResponse = res;
+
+
+   self.viewCompiler = new NunjucksCompiler();
+
 
    self.send = function(code, type, content) {
       baseResponse.writeHead(code, { 'Content-Type': type });
@@ -26,14 +30,8 @@ var Response = function(res) {
    };
 
    self.render = function(view) {
-      nunjucks.render(view + '.html', {}, function(err, html) {
-         if (err) {
-            self.send(404, 'text/plain', 'File not found');
-            return;
-         }
-
-         self.send(200, 'text/html', html);
-      });
+      var html = self.viewCompiler.compile(view + '.html');
+      self.send(200, 'text/html', html);
    };
 };
 
