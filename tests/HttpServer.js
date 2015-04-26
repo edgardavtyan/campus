@@ -67,4 +67,23 @@ describe('HttpServer', function() {
          done();
       });
    });
+
+   it('should send 404 error given non-existing controller', function(done) {
+      httpServer.controllers = {};
+      requestOptions.path = '/Test/testMethod/';
+      makeRequest(function(response) {
+         expect(response.statusCode).to.be(404);
+         done();
+      });
+   });
+
+   it('should send 404 error given non-existing method', function(done) {
+      var TestController = function() {};
+      httpServer.controllers['Test'] = new TestController();
+      requestOptions.path = '/Test/testMethod/';
+      makeRequest(function(response) {
+         expect(response.statusCode).to.be(404);
+         done();
+      });
+   });
 });
