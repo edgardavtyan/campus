@@ -1,16 +1,23 @@
 {
-   "name": "Campus-Frontend",
-   "version": "1.0.0",
-   "description": "KPI Campus frontend",
-   "main": "index.js",
-   "scripts": {
-      "server": "node index.js",
-      "test": "mocha tests"
-   },
-   "devDependencies": {
-      "expect.js": "^0.3.1",
-      "mocha": "^2.2.4",
-      "mock-fs": "^2.5.0"
-   },
-   "dependencies": {}
+  "name": "Campus-Frontend",
+  "version": "1.0.0",
+  "description": "KPI Campus frontend",
+  "main": "index.js",
+  "scripts": {
+    "server": "node index.js",
+    "test": "mocha tests",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -R spec tests"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "core/Response.js"
+    }
+  },
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "istanbul": "^0.3.13",
+    "mocha": "^2.2.4",
+    "mock-fs": "^2.5.0"
+  },
+  "dependencies": {}
 }
