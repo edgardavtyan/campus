@@ -1,0 +1,9 @@
+.link-yellow {
+   text-decoration: none;
+   color: #f0a433;
+
+   &:hover {
+      color: #fff;
+      text-decoration: underline;
+   }
+}

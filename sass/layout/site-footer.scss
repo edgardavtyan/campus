@@ -1,0 +1,19 @@
+.site-footer {
+   @extend %clearfix;
+   color: white;
+   padding: 10px;
+   background-color: $color-primary;
+   font-size: 0.7em;
+
+   a { @extend .link-yellow }
+
+   .left-column,
+   .right-column {
+      float: left;
+      width: 50%;
+   }
+
+   .right-column {
+      text-align: right;
+   }
+}

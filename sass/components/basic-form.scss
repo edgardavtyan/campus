@@ -1,0 +1,38 @@
+.basic-form {
+   text-align: center;
+
+   .textbox,
+   .submit {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+   }
+
+   .textbox {
+      border: 1px solid #ccc;
+   }
+
+   .link {
+      font-size: 0.7em;
+      text-decoration: underline;
+      color: #afdfca;
+      transition: color 300ms;
+
+      &:hover {
+         color: white;
+      }
+   }
+
+   .submit {
+      cursor: pointer;
+      border: none;
+      color: white;
+      background-color: #5CB85C;
+      transition: background-color 300ms;
+
+      &:hover {
+         background-color: #449D44;
+      }
+   }
+}

@@ -1,0 +1,23 @@
+{% extends "shared/layout.html" %}
+
+{% block main %}
+<main class="login-main">
+   <div class="container">
+      <img src="./public/images/logo-big.png" alt="" class="logo">
+
+      <form class="basic-form" action="/login" method="POST">
+         <div class="input-group">
+            <input class="textbox" name="Username" type="text" placeholder="Логін">
+         </div>
+
+         <div class="input-group">
+            <input class="textbox" name="Password" type="password" placeholder="Пароль">
+         </div>
+
+         <a class="link" href="#">Служба підтримки користувачів</a>
+
+         <button class="submit" type="submit">Вхід</button>
+      </form>
+   </div>
+</main>
+{% endblock %}

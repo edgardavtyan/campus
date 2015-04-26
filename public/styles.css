@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Verdana', 'Geneva', sans-serif; }
+
+a {
+  color: white;
+  text-decoration: none;
+  -webkit-transition: color 300ms;
+          transition: color 300ms; }
+
+.site-footer:after {
+  content: '';
+  display: block;
+  clear: both; }
+
+.site-header {
+  height: 50px;
+  padding: 0 10px;
+  background-color: white;
+  text-align: right; }
+  .site-header .title {
+    color: #208843;
+    font-weight: normal;
+    line-height: 50px; }
+  .site-header .logo {
+    vertical-align: middle; }
+
+.site-main {
+  padding: 100px 0 30px 0;
+  background-color: #208843;
+  color: white; }
+  .site-main .logo {
+    display: block;
+    margin: auto; }
+  .site-main .title, .site-main .description {
+    width: 500px;
+    margin: auto;
+    font-weight: normal;
+    text-align: center; }
+  .site-main .title {
+    margin-top: 30px; }
+  .site-main .description {
+    margin-top: 20px; }
+
+.site-footer {
+  color: white;
+  padding: 10px;
+  background-color: #208843;
+  font-size: 0.7em; }
+  .site-footer .left-column, .site-footer .right-column {
+    float: left;
+    width: 50%; }
+  .site-footer .right-column {
+    text-align: right; }
+
+.link-yellow, .site-main a, .site-footer a, .index-main a {
+  text-decoration: none;
+  color: #f0a433; }
+  .link-yellow:hover, .site-main a:hover, .site-footer a:hover, .index-main a:hover {
+    color: #fff;
+    text-decoration: underline; }
+
+.basic-form {
+  text-align: center; }
+  .basic-form .textbox, .basic-form .submit {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 8px; }
+  .basic-form .textbox {
+    border: 1px solid #ccc; }
+  .basic-form .link {
+    font-size: 0.7em;
+    text-decoration: underline;
+    color: #afdfca;
+    -webkit-transition: color 300ms;
+            transition: color 300ms; }
+    .basic-form .link:hover {
+      color: white; }
+  .basic-form .submit {
+    cursor: pointer;
+    border: none;
+    color: white;
+    background-color: #5CB85C;
+    -webkit-transition: background-color 300ms;
+            transition: background-color 300ms; }
+    .basic-form .submit:hover {
+      background-color: #449D44; }
+
+.index-main {
+  padding: 100px 0 30px 0;
+  background-color: #208843;
+  color: white; }
+  .index-main .logo {
+    display: block;
+    margin: auto; }
+  .index-main .title, .index-main .description {
+    width: 500px;
+    margin: auto;
+    font-weight: normal;
+    text-align: center; }
+  .index-main .title {
+    margin-top: 30px; }
+  .index-main .description {
+    margin-top: 20px; }
+
+.login-main {
+  padding: 100px 0 30px;
+  background-color: #208843;
+  color: white; }
+  .login-main .container {
+    width: 440px;
+    margin-left: auto;
+    margin-right: auto; }
+  .login-main .logo {
+    display: block;
+    margin: auto; }
+  .login-main .basic-form {
+    margin: 20px; }
