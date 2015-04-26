@@ -73,6 +73,17 @@ describe('Response', function() {
             done();
          });
       });
+
+      it('should send 404 error given non-existing file', function(done) {
+         startServer(function(response) {
+            response.sendFile('TestDir/not-exists.json');
+         });
+
+         makeRequest(function(response) {
+            expect(response.statusCode).to.be(404);
+            done();
+         });
+      });
    });
 
    describe('#render', function() {
