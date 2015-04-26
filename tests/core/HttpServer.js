@@ -46,7 +46,7 @@ describe('HttpServer', function() {
 
    it('should send file if file was requested', function(done) {
       mockfs({
-         '/path/to': {'file.json': '{ testKey: testValue }' }
+         'path/to/': {'file.json': '{ testKey: testValue }' }
       });
 
       requestOptions.path = '/path/to/file.json';

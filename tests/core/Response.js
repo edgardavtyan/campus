@@ -76,38 +76,19 @@ describe('Response', function() {
    });
 
    describe('#render', function() {
-      before(function() {
-         mockfs({
-            'views': {
-               'template.html': '<p>Test HTML</p>'
-            }
-         });
-      });
-
-      after(function() {
-         mockfs.restore();
-      });
-
       it('should send rendered contents of the template file', function(done) {
-         var html = '<p>Test HTML</p>';
+         var testHtmlString = '<p>Test HTML</p>';
 
          startServer(function(response) {
+            response.viewCompiler.compile = function() {
+               return testHtmlString;
+            };
+
             response.render('template');
          });
 
          makeRequest(function(response, data) {
-            expect(data).to.be(html);
-            done();
-         });
-      });
-
-      it('should send 404 error if view does not exists', function(done) {
-         startServer(function(response) {
-            response.render('not-exists');
-         });
-
-         makeRequest(function(response) {
-            expect(response.statusCode).to.be(404);
+            expect(data).to.be(testHtmlString);
             done();
          });
       });
