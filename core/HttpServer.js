@@ -12,6 +12,11 @@ var HttpServer = function() {
          var response = new Response(res);
          var request = new Request(req);
 
+         if (request.isFile()) {
+            response.sendFile(request.pathname());
+            return;
+         }
+
          var controller = self.controllers[request.controllerName()];
          if (!controller) {
             response.send(404, 'text/plain', 'Controller not found');

@@ -1,4 +1,5 @@
 var fs = require('fs');
+var mime = require('mime');
 var path = require('path');
 
 var Response = function(res) {
@@ -18,7 +19,8 @@ var Response = function(res) {
             return;
          }
 
-         self.send(200, 'text/html', fileContent.toString('utf-8'));
+         console.log(mime.lookup(filePath));
+         self.send(200, mime.lookup(filePath), fileContent.toString('utf-8'));
       });
    };
 

@@ -44,6 +44,26 @@ describe('Request', function() {
       });
    });
 
+   describe('#isFile', function() {
+      it('should return true if file was requested', function(done) {
+         server(done, function(request) {
+            expect(request.isFile()).to.be(true);
+         });
+
+         requestOptions.path = '/path/to/file.html';
+         http.request(requestOptions).end();
+      });
+
+      it('should return false if controller or method was requested', function(done) {
+         server(done, function(request) {
+            expect(request.isFile()).to.be(false);
+         });
+
+         requestOptions.path = '/Controller/method';
+         http.request(requestOptions).end();
+      });
+   });
+
    describe('#controllerName', function() {
       it('should return first pathname item if it exists', function(done) {
          server(done, function(request) {

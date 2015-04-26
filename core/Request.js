@@ -1,4 +1,5 @@
 var url = require('url');
+var path = require('path');
 
 var Request = function(request) {
    var self = this;
@@ -10,6 +11,10 @@ var Request = function(request) {
 
    self.url = function() {
       return baseRequest.url;
+   };
+
+   self.isFile = function() {
+      return path.extname(self.pathname()) !== '';
    };
 
    self.controllerName = function() {

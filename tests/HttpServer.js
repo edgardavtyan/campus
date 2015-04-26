@@ -1,5 +1,6 @@
 var expect = require('expect.js');
 var http = require('http');
+var mockfs = require('mock-fs');
 var HttpServer = require('../core/HttpServer');
 
 var requestOptions = {};
@@ -41,6 +42,19 @@ describe('HttpServer', function() {
          path: '/',
          method: 'GET'
       };
+   });
+
+   it('should send file if file was requested', function(done) {
+      mockfs({
+         '/path/to': {'file.json': '{ testKey: testValue }' }
+      });
+
+      requestOptions.path = '/path/to/file.json';
+      makeRequest(function(response, body) {
+         expect(body).to.be('{ testKey: testValue }');
+         mockfs.restore();
+         done();
+      });
    });
 
    it('should call index method of controller on request', function(done) {
