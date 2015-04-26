@@ -19,7 +19,6 @@ var Response = function(res) {
             return;
          }
 
-         console.log(mime.lookup(filePath));
          self.send(200, mime.lookup(filePath), fileContent.toString('utf-8'));
       });
    };

@@ -20,11 +20,11 @@ var makeRequest = function(onBodyRead) {
 var TestController = function() {
    var self = this;
 
-   self.index = function() {
+   self.GET_index = function() {
       self.response.send(200, 'text/plain', 'Test Data');
    };
 
-   self.testMethod = function() {
+   self.GET_testMethod = function() {
       self.response.send(200, 'text/plain', 'Test Data');
    };
 };

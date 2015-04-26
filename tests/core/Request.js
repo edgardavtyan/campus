@@ -84,9 +84,9 @@ describe('Request', function() {
    });
 
    describe('#controllerMethod', function() {
-      it('should return second pathname item if it exists', function(done) {
+      it('should form and return controller method if it exists in pathname', function(done) {
          server(done, function(request) {
-            expect(request.controllerMethod()).to.be('method');
+            expect(request.controllerMethod()).to.be('GET_method');
          });
 
          http.request(requestOptions).end();
@@ -94,7 +94,7 @@ describe('Request', function() {
 
       it('should return default method if pathname has no second item', function(done) {
          server(done, function(request) {
-            expect(request.controllerMethod()).to.be('index');
+            expect(request.controllerMethod()).to.be('GET_index');
          });
 
          requestOptions.path = '/home';
@@ -103,7 +103,7 @@ describe('Request', function() {
 
       it('should return default method if pathname second item is "/"', function(done) {
          server(done, function(request) {
-            expect(request.controllerMethod()).to.be('index');
+            expect(request.controllerMethod()).to.be('GET_index');
          });
 
          requestOptions.path = '/home/';
@@ -112,7 +112,7 @@ describe('Request', function() {
    });
 
    describe('#controllerParams', function() {
-      it('should return third and rest pathname items if they exist', function(done) {
+      it('should return third and rest pathname items if they exist in pathname', function(done) {
          server(done, function(request) {
             expect(request.controllerParams()).to.be.eql(['param1', 'param2']);
          });
