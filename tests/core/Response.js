@@ -7,7 +7,8 @@ var requestOptions = {};
 
 var startServer = function(callback) {
    http.createServer(function(req, res) {
-      var response = new Response(res);
+      var response = new Response();
+      response.load(res);
       this.close();
       callback(response);
    }).listen(1000);
