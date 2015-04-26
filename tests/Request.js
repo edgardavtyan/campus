@@ -8,9 +8,9 @@ var server = function(done, callback) {
    http.createServer(function(req, res) {
       res.end();
       var request = new Request(req);
+      this.close();
       callback(request, res);
       done();
-      this.close();
    }).listen(1000);
 };
 
@@ -73,6 +73,15 @@ describe('Request', function() {
       });
 
       it('should return default method if pathname has no second item', function(done) {
+         server(done, function(request) {
+            expect(request.controllerMethod()).to.be('index');
+         });
+
+         requestOptions.path = '/home';
+         http.request(requestOptions).end();
+      });
+
+      it('should return default method if pathname second item is "/"', function(done) {
          server(done, function(request) {
             expect(request.controllerMethod()).to.be('index');
          });
