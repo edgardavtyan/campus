@@ -59,8 +59,9 @@ var Request = function(req) {
 
    self.controllerMethod = function() {
       var method = self.pathname().split('/')[2];
-      var noMethodSpecified = (method === undefined) || (method === '');
-      return (noMethodSpecified) ? ('GET_index') : (baseRequest.method + '_' + method);
+      var isMethodSpecified = (method !== undefined) && (method !== '');
+      var fullMethod = baseRequest.method + '_' + ((isMethodSpecified) ? (method) : ('index'));
+      return fullMethod;
    };
 
    self.controllerParams = function() {
