@@ -19,8 +19,11 @@ describe('HttpServer', function() {
       };
    };
 
+   var controllers = {};
+   controllers['Test'] = new TestController();
+
    var httpServer = new HttpServer();
-   httpServer.controllers['Test'] = new TestController();
+   httpServer.setControllers(controllers);
    httpServer.start();
 
 
