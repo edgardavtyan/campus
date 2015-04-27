@@ -10,12 +10,12 @@ describe('HttpServer', function() {
    var TestController = function() {
       var self = this;
 
-      self.GET_index = function() {
-         self.response.send(200, 'text/plain', 'Test Data');
+      self.GET_index = function(req, res) {
+         res.send(200, 'text/plain', 'Test Data');
       };
 
-      self.GET_testMethod = function() {
-         self.response.send(200, 'text/plain', 'Test Data');
+      self.GET_testMethod = function(req, res) {
+         res.send(200, 'text/plain', 'Test Data');
       };
    };
 

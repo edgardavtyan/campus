@@ -10,8 +10,7 @@ describe('Response', function() {
 
    var startServer = function(callback) {
       http.createServer(function(req, res) {
-         var response = new Response();
-         response.load(res);
+         var response = new Response(res);
          this.close();
          callback(response);
       }).listen(1000);
@@ -85,10 +84,13 @@ describe('Response', function() {
          var testHtmlString = '<p>Test HTML</p>';
 
          startServer(function(response) {
-            response.viewCompiler.compile = function() {
-               return testHtmlString;
+            var fakeViewCompiler = {
+               compile: function() {
+                  return testHtmlString;
+               }
             };
 
+            response.setViewCompiler(fakeViewCompiler);
             response.render('template');
          });
 

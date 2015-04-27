@@ -8,8 +8,7 @@ describe('Request', function() {
    var startServer = function(done, callback) {
       http.createServer(function(req, res) {
          res.end();
-         var request = new Request();
-         request.load(req);
+         var request = new Request(req);
          this.close();
          callback(request, res);
          done();

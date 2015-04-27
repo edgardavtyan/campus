@@ -5,8 +5,18 @@ var Request = require('./Request');
 var HttpServer = function() {
    var self = this;
 
+
    self.controllers = {};
    self.viewCompiler = null;
+
+
+   self.setControllers = function(controllers) {
+      self.controllers = controllers;
+   };
+
+   self.setViewCompiler = function(compiler) {
+      self.viewCompiler = compiler;
+   };
 
    self.start = function() {
       http.createServer(function(req, res) {
