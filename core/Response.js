@@ -5,13 +5,11 @@ var path = require('path');
 var Response = function(res) {
    var self = this;
    var baseResponse = res;
+   var viewCompiler = null;
 
 
-   self.viewCompiler = null;
-
-
-   self.setViewCompiler = function(compiler) {
-      self.viewCompiler = compiler;
+   self.setViewCompiler = function(newViewCompiler) {
+      viewCompiler = newViewCompiler;
    };
 
    self.send = function(code, type, content) {
@@ -33,7 +31,7 @@ var Response = function(res) {
    };
 
    self.render = function(view) {
-      var html = self.viewCompiler.compile(view + '.html');
+      var html = viewCompiler.compile(view + '.html');
       self.send(200, 'text/html', html);
    };
 };
