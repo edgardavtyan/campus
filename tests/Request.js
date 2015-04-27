@@ -1,6 +1,6 @@
 var expect = require('expect.js');
 var http = require('http');
-var Request = require('../../core/Request');
+var Request = require('../core/Request');
 
 describe('Request', function() {
    var requestOptions = {};

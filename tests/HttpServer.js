@@ -1,7 +1,7 @@
 var expect = require('expect.js');
 var mockfs = require('mock-fs');
-var util = require('../util');
-var HttpServer = require('../../core/HttpServer');
+var util = require('./util');
+var HttpServer = require('../core/HttpServer');
 
 
 describe('HttpServer', function() {
