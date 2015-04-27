@@ -27,15 +27,34 @@ describe('Request', function() {
 
 
    describe('#send', function() {
-      it('should send request to server', function() {
+      it('should send GET requests to server', function() {
          http.createServer(function(req, res) {
             res.end('Test Data');
+            this.close();
          }).listen(2000);
 
          var request = new Request();
-         request.send('GET', 'http://localhost:2000', function(data) {
+         request.send('GET', 'http://localhost:2000', '', function(data) {
             expect(data).to.be('Test Data');
          });
+      });
+
+
+      it('should send POST requests to server', function(done) {
+         http.createServer(function(req) {
+            var reqBody = '';
+            req.on('data', function(chunk) {
+               reqBody += chunk;
+            });
+
+            req.on('end', function() {
+               expect(reqBody).to.be('Test Data');
+               done();
+            });
+         }).listen(2000);
+
+         var request = new Request();
+         request.send('POST', 'http://localhost:2000', 'Test Data');
       });
    });
 

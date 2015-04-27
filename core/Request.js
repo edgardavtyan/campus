@@ -6,7 +6,7 @@ var Request = function(req) {
    var self = this;
    var baseRequest = req;
 
-   self.send = function(method, rawUrl, callback) {
+   self.send = function(method, rawUrl, data, callback) {
       var parsedUrl = url.parse(rawUrl);
       var requestOptions = {
          hostname: parsedUrl.hostname,
@@ -15,7 +15,7 @@ var Request = function(req) {
          method: method
       };
 
-      http.request(requestOptions, function(res) {
+      var request = http.request(requestOptions, function(res) {
          var responseBody = '';
 
          res.on('data', function(chunk) {
@@ -25,7 +25,10 @@ var Request = function(req) {
          res.on('end', function() {
             callback(responseBody);
          });
-      }).end();
+      });
+
+      request.write(data);
+      request.end();
    };
 
    self.pathname = function() {
