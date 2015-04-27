@@ -6,32 +6,30 @@ var HttpServer = function() {
    var self = this;
 
    self.controllers = {};
-   self.response = new Response();
-   self.request = new Request();
 
    self.start = function() {
       http.createServer(function(req, res) {
-         self.response.load(res);
-         self.request.load(req);
+         var response = new Response(res);
+         var request = new Request(req);
 
-         if (self.request.isFile()) {
-            self.response.sendFile(self.request.pathname());
+         if (request.isFile()) {
+            response.sendFile(request.pathname());
             return;
          }
 
-         var controller = self.controllers[self.request.controllerName()];
+         var controller = self.controllers[request.controllerName()];
          if (!controller) {
-            self.response.send(404, 'text/plain', 'Controller not found');
+            response.send(404, 'text/plain', 'Controller not found');
             return;
          }
 
-         var controllerMethod = controller[self.request.controllerMethod()];
+         var controllerMethod = controller[request.controllerMethod()];
          if (!controllerMethod) {
-            self.response.send(404, 'text/plain', 'Method not found');
+            response.send(404, 'text/plain', 'Method not found');
             return;
          }
 
-         controllerMethod(self.request, self.response);
+         controllerMethod(request, response);
       }).listen(8888);
    };
 };

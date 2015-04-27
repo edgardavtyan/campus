@@ -1,14 +1,10 @@
 var url = require('url');
 var path = require('path');
 
-var Request = function() {
+var Request = function(req) {
    var self = this;
-   var baseRequest = null;
+   var baseRequest = req;
 
-
-   self.load = function(req) {
-      baseRequest = req;
-   };
 
    self.pathname = function() {
       return url.parse(self.url()).pathname;
