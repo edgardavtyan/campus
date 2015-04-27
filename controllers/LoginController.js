@@ -1,8 +1,8 @@
 var HomeController = function() {
    var self = this;
 
-   self.GET_index = function() {
-      self.response.render('login');
+   self.GET_index = function(req, res) {
+      res.render('login');
    };
 };
 

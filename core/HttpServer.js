@@ -31,9 +31,7 @@ var HttpServer = function() {
             return;
          }
 
-         controller.response = self.response;
-         controller.request = self.request;
-         controllerMethod();
+         controllerMethod(self.request, self.response);
       }).listen(8888);
    };
 };
