@@ -1,10 +1,32 @@
 var url = require('url');
 var path = require('path');
+var http = require('http');
 
 var Request = function(req) {
    var self = this;
    var baseRequest = req;
 
+   self.send = function(method, rawUrl, callback) {
+      var parsedUrl = url.parse(rawUrl);
+      var requestOptions = {
+         hostname: parsedUrl.hostname,
+         port: parsedUrl.port,
+         path: parsedUrl.path,
+         method: method
+      };
+
+      http.request(requestOptions, function(res) {
+         var responseBody = '';
+
+         res.on('data', function(chunk) {
+            responseBody += chunk;
+         });
+
+         res.on('end', function() {
+            callback(responseBody);
+         });
+      }).end();
+   };
 
    self.pathname = function() {
       return url.parse(self.url()).pathname;
