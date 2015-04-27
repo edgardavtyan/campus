@@ -1,6 +1,7 @@
 var url = require('url');
 var path = require('path');
 var http = require('http');
+var querystring = require('querystring');
 
 var Request = function(req) {
    var self = this;
@@ -36,7 +37,8 @@ var Request = function(req) {
          });
       });
 
-      request.write(data);
+      var dataString = (typeof data === 'object') ? (querystring.stringify(data)) : (data);
+      request.write(dataString);
       request.end();
    };
 
