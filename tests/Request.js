@@ -34,7 +34,7 @@ describe('Request', function() {
          }).listen(2000);
 
          var request = new Request();
-         request.send('GET', 'http://localhost:2000', '', function(data) {
+         request.send('GET', 'http://localhost:2000', function(data) {
             expect(data).to.be('Test Data');
          });
       });

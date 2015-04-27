@@ -7,6 +7,15 @@ var Request = function(req) {
    var baseRequest = req;
 
    self.send = function(method, rawUrl, data, callback) {
+      if (typeof data === 'function') {
+         callback = data;
+         data = '';
+      }
+
+      if (callback === undefined) {
+         callback = function() {};
+      }
+
       var parsedUrl = url.parse(rawUrl);
       var requestOptions = {
          hostname: parsedUrl.hostname,
