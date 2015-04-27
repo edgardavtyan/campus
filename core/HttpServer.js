@@ -4,24 +4,22 @@ var Request = require('./Request');
 
 var HttpServer = function() {
    var self = this;
+   var controllers = {};
+   var viewCompiler = null;
 
 
-   self.controllers = {};
-   self.viewCompiler = null;
-
-
-   self.setControllers = function(controllers) {
-      self.controllers = controllers;
+   self.setControllers = function(newControllers) {
+      controllers = newControllers;
    };
 
-   self.setViewCompiler = function(compiler) {
-      self.viewCompiler = compiler;
+   self.setViewCompiler = function(newViewCompiler) {
+      viewCompiler = newViewCompiler;
    };
 
    self.start = function() {
       http.createServer(function(req, res) {
          var response = new Response(res);
-         response.setViewCompiler(self.viewCompiler);
+         response.setViewCompiler(viewCompiler);
 
          var request = new Request(req);
 
@@ -30,7 +28,7 @@ var HttpServer = function() {
             return;
          }
 
-         var controller = self.controllers[request.controllerName()];
+         var controller = controllers[request.controllerName()];
          if (!controller) {
             response.send(404, 'text/plain', 'Controller not found');
             return;
