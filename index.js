@@ -8,4 +8,5 @@ nunjucksCompiler.configure('views', { autoescape: true });
 
 var httpServer = new HttpServer();
 httpServer.controllers = controllers;
+httpServer.viewCompiler = nunjucksCompiler;
 httpServer.start();

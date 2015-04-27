@@ -6,10 +6,13 @@ var HttpServer = function() {
    var self = this;
 
    self.controllers = {};
+   self.viewCompiler = null;
 
    self.start = function() {
       http.createServer(function(req, res) {
          var response = new Response(res);
+         response.setViewCompiler(self.viewCompiler);
+
          var request = new Request(req);
 
          if (request.isFile()) {

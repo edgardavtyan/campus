@@ -1,14 +1,18 @@
 var fs = require('fs');
 var mime = require('mime');
 var path = require('path');
-var NunjucksCompiler = require('./NunjucksCompiler');
 
 var Response = function(res) {
    var self = this;
    var baseResponse = res;
 
 
-   self.viewCompiler = new NunjucksCompiler();
+   self.viewCompiler = null;
+
+
+   self.setViewCompiler = function(compiler) {
+      self.viewCompiler = compiler;
+   };
 
    self.send = function(code, type, content) {
       baseResponse.writeHead(code, { 'Content-Type': type });
