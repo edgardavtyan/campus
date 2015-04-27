@@ -26,6 +26,20 @@ describe('Request', function() {
    });
 
 
+   describe('#send', function() {
+      it('should send request to server', function() {
+         http.createServer(function(req, res) {
+            res.end('Test Data');
+         }).listen(2000);
+
+         var request = new Request();
+         request.send('GET', 'http://localhost:2000', function(data) {
+            expect(data).to.be('Test Data');
+         });
+      });
+   });
+
+
    describe('#pathname', function() {
       it('should return base request pathname', function(done) {
          startServer(done, function(request) {
