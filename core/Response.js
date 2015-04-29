@@ -1,6 +1,7 @@
 var fs = require('fs');
 var mime = require('mime');
 var path = require('path');
+var qs = require('querystring');
 
 var Response = function(res) {
    var self = this;
@@ -19,6 +20,10 @@ var Response = function(res) {
    };
 
    self.sendJson = function(code, content) {
+      if (typeof content === 'object') {
+         content = qs.stringify(content);
+      }
+
       self.send(code, 'json', content);
    };
 
