@@ -42,6 +42,22 @@ describe('Response', function() {
    });
 
 
+   describe('#sendJson', function() {
+      it('should send JSON response', function(done) {
+         startServer(function(response) {
+            response.sendJson(200, '{test: text}');
+         });
+
+         util.makeRequest(requestOptions, function(res, data) {
+            expect(res.statusCode).to.be(200);
+            expect(data).to.be('{test: text}');
+            expect(res.headers['content-type']).to.be('application/json');
+            done();
+         });
+      });
+   });
+
+
    describe('#sendFile', function() {
       before(function() {
          mockfs({

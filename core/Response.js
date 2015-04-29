@@ -18,6 +18,10 @@ var Response = function(res) {
       baseResponse.end();
    };
 
+   self.sendJson = function(code, content) {
+      self.send(code, 'json', content);
+   };
+
    self.sendFile = function(filePath) {
       var fixedFilePath = path.join(__dirname, '../', filePath);
       fs.readFile(fixedFilePath, function(err, fileContent) {
