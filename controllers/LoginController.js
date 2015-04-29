@@ -8,7 +8,6 @@ var HomeController = function() {
    self.GET_auth = function(req, res) {
       var apiUrl = 'http://campus-api.azurewebsites.net/User/Auth';
       var apiData = { login: req.query().Username, password: req.query().Password };
-      console.log(apiData);
       req.send('GET', apiUrl, apiData, function(apiResponse) {
          res.send(200, 'text', apiResponse);
       });
