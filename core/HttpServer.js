@@ -1,4 +1,5 @@
 var http = require('http');
+var qs = require('querystring');
 var Response = require('./Response');
 var Request = require('./Request');
 
@@ -40,7 +41,20 @@ var HttpServer = function() {
             return;
          }
 
-         controllerMethod(request, response);
+         if (req.method === 'POST') {
+            var body = '';
+
+            req.on('data', function(chunk) {
+               body += chunk;
+            });
+
+            req.on('end', function() {
+               request.body = qs.parse(body);
+               controllerMethod(request, response);
+            });
+         } else {
+            controllerMethod(request, response);
+         }
       }).listen(8888);
    };
 };
