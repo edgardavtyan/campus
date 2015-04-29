@@ -50,6 +50,10 @@ var Request = function(req) {
       request.end();
    };
 
+   self.query = function() {
+      return querystring.parse(url.parse(self.url()).query);
+   };
+
    self.pathname = function() {
       return url.parse(self.url()).pathname;
    };
