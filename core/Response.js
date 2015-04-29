@@ -13,7 +13,7 @@ var Response = function(res) {
    };
 
    self.send = function(code, type, content) {
-      baseResponse.writeHead(code, { 'Content-Type': type });
+      baseResponse.writeHead(code, { 'Content-Type': mime.lookup(type) });
       baseResponse.write(content);
       baseResponse.end();
    };
