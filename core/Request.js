@@ -25,6 +25,12 @@ var Request = function(req) {
          method: method
       };
 
+      var dataString = (typeof data === 'object') ? (querystring.stringify(data)) : (data);
+
+      if (method === 'GET') {
+         requestOptions.path += '?' + dataString;
+      }
+
       var request = http.request(requestOptions, function(res) {
          var responseBody = '';
 
@@ -37,8 +43,10 @@ var Request = function(req) {
          });
       });
 
-      var dataString = (typeof data === 'object') ? (querystring.stringify(data)) : (data);
-      request.write(dataString);
+      if (method === 'POST') {
+         request.write(dataString);
+      }
+
       request.end();
    };
 
