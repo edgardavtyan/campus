@@ -41,7 +41,7 @@ var HttpServer = function() {
             return;
          }
 
-         if (req.method === 'POST') {
+         if (request.method() === 'POST') {
             var body = '';
 
             req.on('data', function(chunk) {

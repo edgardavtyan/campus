@@ -50,6 +50,10 @@ var Request = function(req) {
       request.end();
    };
 
+   self.method = function() {
+      return baseRequest.method;
+   };
+
    self.query = function() {
       return querystring.parse(url.parse(self.url()).query);
    };
