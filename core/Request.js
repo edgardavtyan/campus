@@ -7,6 +7,7 @@ var Request = function(req) {
    var self = this;
    var baseRequest = req;
 
+
    self.send = function(method, rawUrl, data, callback) {
       if (typeof data === 'function') {
          callback = data;
@@ -26,7 +27,6 @@ var Request = function(req) {
       };
 
       var dataString = (typeof data === 'object') ? (querystring.stringify(data)) : (data);
-
       if (method === 'GET') {
          requestOptions.path += '?' + dataString;
       }
