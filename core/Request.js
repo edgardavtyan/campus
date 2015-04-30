@@ -50,6 +50,11 @@ var Request = function(req) {
       request.end();
    };
 
+   self.sendApi = function(method, apiPath, data, callback) {
+      var apiUrl = 'http://campus-api.azurewebsites.net/' + apiPath;
+      self.send(method, apiUrl, data, callback);
+   };
+
    self.method = function() {
       return baseRequest.method;
    };
