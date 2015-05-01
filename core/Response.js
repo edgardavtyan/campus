@@ -48,6 +48,14 @@ var Response = function(res) {
       var html = viewCompiler.compile(view + '.html', viewData);
       self.send(200, 'text/html', html);
    };
+
+   self.render404 = function(data) {
+      if (data === undefined) {
+         data = 'Page not found';
+      }
+
+      self.render('404', { body: data });
+   };
 };
 
 module.exports = Response;

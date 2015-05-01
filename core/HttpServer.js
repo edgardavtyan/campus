@@ -31,13 +31,13 @@ var HttpServer = function() {
 
          var controller = controllers[request.controllerName()];
          if (!controller) {
-            response.send(404, 'text/plain', 'Controller not found');
+            response.render404('Controller not found');
             return;
          }
 
          var controllerMethod = controller[request.controllerMethod()];
          if (!controllerMethod) {
-            response.send(404, 'text/plain', 'Method not found');
+            response.render404('Method not found');
             return;
          }
 
