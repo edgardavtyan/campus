@@ -6,22 +6,15 @@ var Request = require('./Request');
 var HttpServer = function() {
    var self = this;
    var controllers = {};
-   var viewCompiler = null;
 
 
    self.setControllers = function(newControllers) {
       controllers = newControllers;
    };
 
-   self.setViewCompiler = function(newViewCompiler) {
-      viewCompiler = newViewCompiler;
-   };
-
    self.start = function() {
       http.createServer(function(req, res) {
          var response = new Response(res);
-         response.setViewCompiler(viewCompiler);
-
          var request = new Request(req);
 
          if (request.isFile()) {

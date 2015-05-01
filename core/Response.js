@@ -2,16 +2,11 @@ var fs = require('fs');
 var mime = require('mime');
 var path = require('path');
 var qs = require('querystring');
+var nunjucks = require('nunjucks');
 
 var Response = function(res) {
    var self = this;
    var baseResponse = res;
-   var viewCompiler = null;
-
-
-   self.setViewCompiler = function(newViewCompiler) {
-      viewCompiler = newViewCompiler;
-   };
 
    self.send = function(code, type, content) {
       baseResponse.writeHead(code, { 'Content-Type': mime.lookup(type) });
@@ -45,7 +40,7 @@ var Response = function(res) {
    };
 
    self.render = function(view, viewData) {
-      var html = viewCompiler.compile(view + '.html', viewData);
+      var html = nunjucks.render(view + '.html', viewData);
       self.send(200, 'text/html', html);
    };
 
