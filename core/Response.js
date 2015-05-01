@@ -39,6 +39,11 @@ var Response = function(res) {
       });
    };
 
+   self.redirect = function(redirectUrl) {
+      baseResponse.writeHead(302, { 'Location': redirectUrl });
+      baseResponse.end();
+   };
+
    self.render = function(view) {
       var html = viewCompiler.compile(view + '.html');
       self.send(200, 'text/html', html);
