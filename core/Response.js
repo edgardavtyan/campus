@@ -44,8 +44,8 @@ var Response = function(res) {
       baseResponse.end();
    };
 
-   self.render = function(view) {
-      var html = viewCompiler.compile(view + '.html');
+   self.render = function(view, viewData) {
+      var html = viewCompiler.compile(view + '.html', viewData);
       self.send(200, 'text/html', html);
    };
 };
