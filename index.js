@@ -1,10 +1,10 @@
 var nunjucks = require('nunjucks');
 var HttpServer = require('./core/HttpServer');
-var controllers = require('./controllers/_imports');
+var frontendControllers = require('./controllers/frontend/_imports');
 
 
 nunjucks.configure('views', { autoescape: true });
 
-var httpServer = new HttpServer();
-httpServer.setControllers(controllers);
-httpServer.start(8888);
+var frontendServer = new HttpServer();
+frontendServer.setControllers(frontendControllers);
+frontendServer.start(8888);
