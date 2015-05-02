@@ -7,4 +7,4 @@ nunjucks.configure('views', { autoescape: true });
 
 var httpServer = new HttpServer();
 httpServer.setControllers(controllers);
-httpServer.start();
+httpServer.start(8888);

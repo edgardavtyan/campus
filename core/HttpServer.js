@@ -12,7 +12,7 @@ var HttpServer = function() {
       controllers = newControllers;
    };
 
-   self.start = function() {
+   self.start = function(port) {
       http.createServer(function(req, res) {
          var response = new Response(res);
          var request = new Request(req);
@@ -48,7 +48,7 @@ var HttpServer = function() {
          } else {
             controllerMethod(request, response);
          }
-      }).listen(8888);
+      }).listen(port);
    };
 };
 
