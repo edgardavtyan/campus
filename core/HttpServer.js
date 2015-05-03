@@ -3,14 +3,9 @@ var qs = require('querystring');
 var Response = require('./Response');
 var Request = require('./Request');
 
-var HttpServer = function() {
+var HttpServer = function(newControllers) {
    var self = this;
-   var controllers = {};
-
-
-   self.setControllers = function(newControllers) {
-      controllers = newControllers;
-   };
+   var controllers = newControllers;
 
    self.start = function(port) {
       http.createServer(function(req, res) {
