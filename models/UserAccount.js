@@ -82,10 +82,6 @@ var UserAccount = db.define('UserAccount', {
       type: Sequelize.STRING(50),
       allowNull: true
    }
-},
-{
-   freezeTableName: true,
-   timestamps: false
 });
 
 module.exports = UserAccount;
