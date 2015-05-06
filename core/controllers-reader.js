@@ -15,8 +15,6 @@ var ControllersReader = function() {
          var controllerPath = path.join(__dirname, '../', file);
          var controller = require(controllerPath);
          controllers[controllerName] = controller;
-
-         console.log(controllerPath);
       });
 
       return controllers;
