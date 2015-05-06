@@ -9,7 +9,7 @@ var Response = function(res) {
    var baseResponse = res;
 
    self.send = function(code, type, content) {
-      baseResponse.writeHead(code, { 'Content-Type': mime.lookup(type) });
+      baseResponse.writeHead(code, { 'Content-Type': mime.lookup(type) + ';charset=utf-8' });
       baseResponse.write(content);
       baseResponse.end();
    };
