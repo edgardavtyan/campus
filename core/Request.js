@@ -77,7 +77,7 @@ var Request = function(req) {
 
    self.controllerName = function() {
       var name = self.pathname().split('/')[1];
-      return (name === '') ? ('home') : (name);
+      return (name === '') ? ('Home') : (name);
    };
 
    self.controllerMethod = function() {

@@ -1,11 +1,14 @@
 var http = require('http');
 var qs = require('querystring');
+var controllersReader = require('./controllers-reader.js');
 var Response = require('./Response');
 var Request = require('./Request');
 
-var HttpServer = function(newControllers) {
+var HttpServer = function(controllersFolder) {
    var self = this;
-   var controllers = newControllers;
+   var controllers = controllersReader.read(controllersFolder);
+   console.log(controllers);
+
 
    self.start = function(port) {
       http.createServer(function(req, res) {

@@ -7,4 +7,4 @@ var HomeController = function() {
    };
 };
 
-module.exports = HomeController;
+module.exports = new HomeController();
