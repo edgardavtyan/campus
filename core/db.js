@@ -1,12 +1,18 @@
 var Sequelize = require('sequelize');
+var config = require('../config.js');
 
-var sequelize = new Sequelize('test1', 'sa', '260994', {
-   host: 'localhost',
-   dialect: 'mssql',
-   define: {
-      timestamps: false,
-      freezeTableName: true
+var sequelize = new Sequelize(
+   config.db.dbName,
+   config.db.username,
+   config.db.password,
+   {
+      host: config.db.hostname,
+      dialect: config.db.dialect,
+      define: {
+         timestamps: false,
+         freezeTableName: true
+      }
    }
-});
+);
 
 module.exports = sequelize;
