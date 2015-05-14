@@ -3,7 +3,7 @@ var path = require('path');
 var http = require('http');
 var querystring = require('querystring');
 
-var Request = function(req) {
+function Request(req) {
    var self = this;
    var baseRequest = req;
 
@@ -112,6 +112,6 @@ var Request = function(req) {
          callback(requestBody);
       });
    };
-};
+}
 
 module.exports = Request;

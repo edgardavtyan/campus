@@ -1,6 +1,6 @@
 var UserAccountModel = require('../../models/UserAccount.js');
 
-var HomeController = function() {
+function HomeController() {
    var self = this;
 
 
@@ -11,6 +11,6 @@ var HomeController = function() {
             res.send(200, 'text', JSON.stringify(users, '', 4));
          });
    };
-};
+}
 
 module.exports = new HomeController();

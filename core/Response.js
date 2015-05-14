@@ -4,7 +4,7 @@ var path = require('path');
 var qs = require('querystring');
 var nunjucks = require('nunjucks');
 
-var Response = function(res) {
+function Response(res) {
    var self = this;
    var baseResponse = res;
 
@@ -53,6 +53,6 @@ var Response = function(res) {
 
       self.render('404', { body: data });
    };
-};
+}
 
 module.exports = Response;

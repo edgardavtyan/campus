@@ -1,7 +1,7 @@
 var glob = require('glob');
 var path = require('path');
 
-var ControllersReader = function() {
+function ControllersReader() {
    var self = this;
 
 
@@ -21,6 +21,6 @@ var ControllersReader = function() {
 
       return controllers;
    };
-};
+}
 
 module.exports = ControllersReader;

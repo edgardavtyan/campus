@@ -102,7 +102,7 @@
       "consistent-this": [1, "self"],
       "eol-last": 1,
       "func-names": 0,
-      "func-style": [1, "expression"],
+      "func-style": [1, "declaration"],
       "key-spacing": 0,
       "new-cap": 0,
       "no-array-constructor": 1,

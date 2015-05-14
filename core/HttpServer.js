@@ -4,7 +4,7 @@ var ControllersReader = require('./ControllersReader.js');
 var Response = require('./Response');
 var Request = require('./Request');
 
-var HttpServer = function(controllersFolder) {
+function HttpServer(controllersFolder) {
    var self = this;
    var controllersReader = new ControllersReader();
    var controllers = controllersReader.read(controllersFolder);
@@ -42,6 +42,6 @@ var HttpServer = function(controllersFolder) {
          }
       }).listen(port);
    };
-};
+}
 
 module.exports = HttpServer;

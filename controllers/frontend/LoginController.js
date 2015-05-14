@@ -1,4 +1,4 @@
-var HomeController = function() {
+function HomeController() {
    var self = this;
 
 
@@ -16,6 +16,6 @@ var HomeController = function() {
          res.send(200, 'text', apiResponse);
       });
    };
-};
+}
 
 module.exports = new HomeController();
