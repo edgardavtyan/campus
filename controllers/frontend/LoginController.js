@@ -12,7 +12,7 @@ var HomeController = function() {
          password: req.query().Password
       };
 
-      req.sendApi('GET', 'User/Auth', apiData, function(apiResponse) {
+      req.sendApi('GET', 'User/auth', apiData, function(apiResponse) {
          res.send(200, 'text', apiResponse);
       });
    };

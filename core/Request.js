@@ -7,7 +7,6 @@ var Request = function(req) {
    var self = this;
    var baseRequest = req;
 
-
    self.send = function(method, rawUrl, data, callback) {
       if (typeof data === 'function') {
          callback = data;
@@ -26,7 +25,10 @@ var Request = function(req) {
          method: method
       };
 
-      var dataString = (typeof data === 'object') ? (querystring.stringify(data)) : (data);
+      var dataString = (typeof data === 'object')
+         ? (querystring.stringify(data))
+         : (data);
+
       if (method === 'GET') {
          requestOptions.path += '?' + dataString;
       }
@@ -51,7 +53,7 @@ var Request = function(req) {
    };
 
    self.sendApi = function(method, apiPath, data, callback) {
-      var apiUrl = 'http://campus-api.azurewebsites.net/' + apiPath;
+      var apiUrl = 'http://localhost:1377/' + apiPath;
       self.send(method, apiUrl, data, callback);
    };
 
@@ -80,11 +82,18 @@ var Request = function(req) {
       return (name === '') ? ('Home') : (name);
    };
 
-   self.controllerMethod = function() {
-      var method = self.pathname().split('/')[2];
-      var isMethodSpecified = (method !== undefined) && (method !== '');
-      var fullMethod = baseRequest.method + '_' + ((isMethodSpecified) ? (method) : ('index'));
-      return fullMethod;
+   self.controllerMethodName = function() {
+      var specifiedMethod = self.pathname().split('/')[2];
+
+      var isMethodSpecified =
+         (specifiedMethod !== undefined)
+         && (specifiedMethod !== '');
+
+      var actualMethod = (isMethodSpecified)
+         ? (specifiedMethod)
+         : ('index');
+
+      return baseRequest.method + '_' + actualMethod;
    };
 
    self.controllerParams = function() {

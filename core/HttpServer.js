@@ -26,7 +26,7 @@ var HttpServer = function(controllersFolder) {
             return;
          }
 
-         var controllerMethod = controller[request.controllerMethod()];
+         var controllerMethod = controller[request.controllerMethodName()];
          if (!controllerMethod) {
             response.render404('Method not found');
             return;
