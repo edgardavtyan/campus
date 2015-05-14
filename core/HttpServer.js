@@ -33,14 +33,8 @@ var HttpServer = function(controllersFolder) {
          }
 
          if (request.method() === 'POST') {
-            var body = '';
-
-            req.on('data', function(chunk) {
-               body += chunk;
-            });
-
-            req.on('end', function() {
-               request.body = qs.parse(body);
+            req.readBody(function(requestBody) {
+               request.body = qs.parse(requestBody);
                controllerMethod(request, response);
             });
          } else {

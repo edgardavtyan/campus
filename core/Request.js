@@ -100,6 +100,18 @@ var Request = function(req) {
       var params = self.pathname().split('/').slice(3);
       return (params[0] === '') ? [] : params;
    };
+
+   self.readBody = function(callback) {
+      var requestBody = '';
+
+      baseRequest.on('data', function(chunk) {
+         requestBody += chunk;
+      });
+
+      baseRequest.on('end', function() {
+         callback(requestBody);
+      });
+   };
 };
 
 module.exports = Request;
