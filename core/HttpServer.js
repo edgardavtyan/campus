@@ -1,11 +1,12 @@
 var http = require('http');
 var qs = require('querystring');
-var controllersReader = require('./controllers-reader.js');
+var ControllersReader = require('./ControllersReader.js');
 var Response = require('./Response');
 var Request = require('./Request');
 
 var HttpServer = function(controllersFolder) {
    var self = this;
+   var controllersReader = new ControllersReader();
    var controllers = controllersReader.read(controllersFolder);
    console.log(controllers);
 
