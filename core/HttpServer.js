@@ -8,7 +8,6 @@ var HttpServer = function(controllersFolder) {
    var self = this;
    var controllersReader = new ControllersReader();
    var controllers = controllersReader.read(controllersFolder);
-   console.log(controllers);
 
 
    self.start = function(port) {
