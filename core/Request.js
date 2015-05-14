@@ -79,26 +79,26 @@ var Request = function(req) {
 
    self.controllerName = function() {
       var name = self.pathname().split('/')[1];
-      return (name === '') ? ('Home') : (name);
+      return (name === '') ? 'Home' : name;
    };
 
    self.controllerMethodName = function() {
       var specifiedMethod = self.pathname().split('/')[2];
 
       var isMethodSpecified =
-         (specifiedMethod !== undefined)
-         && (specifiedMethod !== '');
+         specifiedMethod !== undefined
+         && specifiedMethod !== '';
 
       var actualMethod = (isMethodSpecified)
-         ? (specifiedMethod)
-         : ('index');
+         ? specifiedMethod
+         : 'index';
 
       return baseRequest.method + '_' + actualMethod;
    };
 
    self.controllerParams = function() {
       var params = self.pathname().split('/').slice(3);
-      return (params[0] === '') ? ([]) : (params);
+      return (params[0] === '') ? [] : params;
    };
 };
 
