@@ -23,4 +23,4 @@ var ControllersReader = function() {
    };
 };
 
-module.exports = new ControllersReader();
+module.exports = ControllersReader;
