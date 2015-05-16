@@ -4,12 +4,21 @@ var ControllersReader = require('./ControllersReader.js');
 var Response = require('./Response');
 var Request = require('./Request');
 
+/**
+ * Represends a HTTP server
+ * @class
+ * @param {String} controllersFolder Folder with controllers to load
+ */
 function HttpServer(controllersFolder) {
    var self = this;
    var controllersReader = new ControllersReader();
    var controllers = controllersReader.read(controllersFolder);
 
-
+   /**
+    * Starts a HTTP server and listens on given port
+    * @param  {Number} port Port to listen on
+    * @return {Undefined} Undefined
+    */
    self.start = function(port) {
       http.createServer(function(req, res) {
          var response = new Response(res);
