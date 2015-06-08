@@ -12,8 +12,8 @@ function HomeController() {
          password: req.query().Password
       };
 
-      req.sendApi('GET', 'User/auth', apiData, function(apiResponse) {
-         res.send(200, 'text', apiResponse);
+      req.sendApi('GET', 'User/auth', apiData, function (apiResponse) {
+          res.render('my-profile', JSON.parse(apiResponse));
       });
    };
 }

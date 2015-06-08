@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link rel="stylesheet" href="../public/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="../public/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../public/css/style.css">
+    <link rel="stylesheet" href="../public/css/myProfile.css">
+    <meta charset="UTF-8">
+    <title>Campus, profile</title>
+</head>
+<body>
+
+<!--<div class="_white-back">-->
+    <div class="container">
+        <div class="row _white-back">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 _green-color">
+                <div class="frs-head">
+                    НАЦІОНАЛЬНИЙ ТЕХНІЧНИЙ УНІВЕРСИТЕТ УКРАЇНИ "КИЇВСЬКИЙ ПОЛІТЕХНІЧНИЙ ІНСТИТУТ"&nbsp;&nbsp;
+                    <div class="sm-logo"><img src="img/лого2.png" class="logo-img"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--</div>-->
+
+<div class="_full-width _green-back">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="nav-head clearfix">
+                    <div class="lg-logo">
+                        <img src="img/лого.png">
+                    </div>
+                    <div class="sm-nav">
+                        <div class="nav-block clearfix">
+                            <ul class="nav-wrapper">
+                                <li class="nav-item _out"></li>
+                                <li class="nav-item _faq"></li>
+                                <li class="nav-item _case"></li>
+                                <li class="nav-item _home"></li>
+                            </ul>
+                        </div>
+                        <div class="user-name-block _white-color">Вітаємо, {{ FullName }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="slider-menu _green-back"></div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="nav-tree">Головна >> Мій Профіль</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="tabs-nav">
+                <div class="tab">Персональні дані</div>
+                <div class="tab">Редагування профілю</div>
+                <div class="tab">Публікація в intellect.kpi.ua</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tab-data">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h3>Персональні дані</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+                <img src="#" class="avatar-img _orange-back">
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+                <span>{{ Credo }}</span>
+
+                <div class="user-data">
+                    <div class="info-block">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"><h3>{{ FullName }}</h3> <h3>{{ FullNameEng }}</h3></div>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Дані за місцем роботи</div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">e-mail</div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">{{ Email }}</div>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Телефон робочий мобільний домашній</div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Адреса за місцем роботи</div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+                    </div>
+                    <div class="info-block">
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">Дані в мережі інтернет skype веб-сторінка</div>
+                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="_full-width _green-back footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="text-left _white-color">
+                        &copy; Національний технічний університет України<br>
+                        “Київський політехнічний інститут”   www.kpi.ua<br>
+                        Електронний кампус
+                    </div>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                    <div class="text-right _white-color">
+                        Розробник:  Конструкторське бюро<br>
+                        інформаційних систем<br>
+                        www.kbis.kpi.ua
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../public/js/libs/jquery-1.11.3.min.js"></script>
+<script src="../public/js/libs/bootstrap.min.js"></script>
+</body>
+</html>

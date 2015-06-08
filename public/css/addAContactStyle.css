@@ -1,0 +1,60 @@
+.add-form {
+  width: 550px;
+  height: 250px;
+  padding: 25px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  color: #969696;
+}
+
+.form-head {
+  margin: 0;
+  color: #666666;
+  font-size: 12pt;
+  font-weight: normal;
+  text-transform: uppercase;
+}
+
+.form-body {
+  width: 100%;
+  float: left;
+}
+
+.field {
+  height: 25px;
+  margin: 5px 0;
+  clear: both;
+  line-height: 25px;
+}
+
+.input-name {
+  float: left;
+  font-weight: normal;
+}
+
+.input {
+  width: 315px;
+  height: 100%;
+  float: right;
+}
+
+.check-box {
+  width: 20px;
+  height: 20px;
+}
+
+.separator-white {
+  width: 100%;
+  border-top: 1px solid white;
+  margin: 10px 0;
+  float: left;
+}
+
+._btn {
+  width: 105px;
+  text-transform: uppercase;
+  padding: 5px 0;
+  float: right;
+}
+
+/*# sourceMappingURL=addAContactStyle.css.map */
